@@ -16,29 +16,43 @@ def is_palindrome(text):
   return is_palindrome_iterative(text)
   # return is_palindrome_recursive(text)
 
+def clean (text):
+  clean_text = ''
+  for letter in text:
+    if letter.isalpha():
+      clean_text += letter.lower()
+  return clean_text
+
 
 def is_palindrome_iterative(text):
-  clean_pal = []
-  lis = list(text)
-  for item in lis:
-    if item.isalpha():
-      clean_pal.append(item)
-
+  clean_pal = clean(text)
   rev_pal = clean_pal[::-1]
 
-  clean = ''.join(clean_pal).lower()
-  rev = ''.join(rev_pal).lower()
+  clean_text = ''.join(clean_pal)
+  rev = ''.join(rev_pal)
 
-  if clean == rev:
+  if clean_text == rev:
     return True 
   else:
     return False
 
 def is_palindrome_recursive(text, left=None, right=None):
-  # TODO: implement the is_palindrome function recursively here
-  pass
-  # once implemented, change is_palindrome to call is_palindrome_recursive
-  # to verify that your iterative implementation passes all tests
+  text = clean(text)
+  print('Text', text)
+
+  if left is None and right is None: 
+    left = 0
+    right = len(text) - 1
+
+  while left < right: 
+    if text[left] == text[right]:
+      print('Letters matched')
+      left += 1
+      right -= 1 
+      return is_palindrome_recursive(text, left, right)
+    else:
+      return False
+  return True 
 
 
 def main():
