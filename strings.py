@@ -25,7 +25,6 @@ def find_index(text, pattern, starting_index = 0):
   starting = None
 
   for t_index in range(starting_index, len(text)):
-    print('P Index: ', p_index, '& T Index: ', t_index)
     while t_index < len(text) and pattern[p_index] == text[t_index]:  # matched one letter
       match += 1 
       p_index += 1
@@ -36,7 +35,6 @@ def find_index(text, pattern, starting_index = 0):
     starting_index = t_index 
     p_index = 0 
     match = 0
-  print('DONE')
   return None
 
 def find_all_indexes(text, pattern):
