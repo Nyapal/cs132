@@ -95,34 +95,32 @@ class LinkedList(object):
     new_node = Node(item)
     node_count = 0
     curr_node = self.head 
-    # current = None 
+    prev_node = None 
 
     # Check if the given index is out of range and if so raise an error
     if not (0 <= index <= self.size):
       raise ValueError('List index out of range: {}'.format(index))
 
-    # if self.is_empty():
-    #   self.head = new_node
-    #   self.tail = new_node 
-    #   self.size += 1 
-
-    while node_count <= index:
-      if self.is_empty():
-        self.head = new_node
-        self.tail = new_node 
-        self.size += 1 
-        break
-
-      if node_count == index: 
-        curr_node.next = 
-        print('Current Node: ', curr_node)
-        print('Node Count: ', node_count)
-
-      # curr_node = curr_node.next
-      node_count += 1
-
-
+    if self.is_empty():
+      self.append(item)
+      return 
     
+    if index == self.size:
+      self.append(item)
+      return 
+
+    if index == 0:
+      self.prepend(item)
+      return 
+
+    while node_count < index: #traversing thru linked list 
+      node_count += 1
+      prev_node = curr_node
+      curr_node = curr_node.next 
+      if node_count + 1 == index: #index found 
+        prev_node.next = new_node
+        new_node.next = curr_node
+        self.size += 1
 
   def append(self, item):
     """Insert the given item at the tail of this linked list.
@@ -179,9 +177,23 @@ class LinkedList(object):
     using the same node, or raise ValueError if old_item is not found.
     Best case running time: ??? under what conditions? [TODO]
     Worst case running time: ??? under what conditions? [TODO]"""
-    # TODO: Find the node containing the given old_item and replace its
+    # Find the node containing the given old_item and replace its
     # data with new_item, without creating a new node object
-    pass
+
+    node_count = 0
+    curr_node = self.head 
+
+    while node_count < self.size: #traversing thru linked list 
+      print('Current Node: ', curr_node.data)
+      if curr_node.data == old_item:
+        curr_node.data = new_item
+        return 
+
+      node_count += 1
+      curr_node = curr_node.next
+
+    raise ValueError('{} is not found'.format(old_item))
+    
 
   def delete(self, item):
     """Delete the given item from this linked list, or raise ValueError.
@@ -263,7 +275,6 @@ class LinkedList(object):
     print('tail: {}'.format(ll.tail))
     print('size: {}'.format(ll.size))
     print('length: {}'.format(ll.length()))
-
 
 if __name__ == '__main__':
   test_linked_list()

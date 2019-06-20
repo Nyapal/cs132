@@ -142,22 +142,22 @@ class LinkedListTest(unittest.TestCase):
     assert ll.find(lambda item: item > 'B') == 'C'
     assert ll.find(lambda item: item == 'X') is None
 
-  # def test_replace(self):
-  #   ll = LinkedList(['A', 'B', 'C'])
-  #   ll.replace('A', 'D')
-  #   assert ll.head.data == 'D'  # new head
-  #   assert ll.tail.data == 'C'  # unchanged
-  #   assert ll.size == 3
-  #   ll.replace('B', 'E')
-  #   assert ll.head.data == 'D'  # unchanged
-  #   assert ll.tail.data == 'C'  # unchanged
-  #   assert ll.size == 3
-  #   ll.replace('C', 'F')
-  #   assert ll.head.data == 'D'  # unchanged
-  #   assert ll.tail.data == 'F'  # new tail
-  #   assert ll.size == 3
-  #   with self.assertRaises(ValueError):
-  #       ll.replace('X', 'Y')  # item not in list
+  def test_replace(self):
+    ll = LinkedList(['A', 'B', 'C'])
+    ll.replace('A', 'D')
+    assert ll.head.data == 'D'  # new head
+    assert ll.tail.data == 'C'  # unchanged
+    assert ll.size == 3
+    ll.replace('B', 'E')
+    assert ll.head.data == 'D'  # unchanged
+    assert ll.tail.data == 'C'  # unchanged
+    assert ll.size == 3
+    ll.replace('C', 'F')
+    assert ll.head.data == 'D'  # unchanged
+    assert ll.tail.data == 'F'  # new tail
+    assert ll.size == 3
+    with self.assertRaises(ValueError):
+        ll.replace('X', 'Y')  # item not in list
 
   def test_delete(self):
     ll = LinkedList(['A', 'B', 'C'])
